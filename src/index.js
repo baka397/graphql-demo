@@ -32,10 +32,10 @@ const query = `
  */
 /* fragment
 const query = `{
-  leftComparison: getPost(pageNo: 1) {
+  leftComparison: getPostAsyn(pageNo: 1) {
     ...comparisonFields
   }
-  rightComparison: getPost(pageNo: 2) {
+  rightComparison: getPostAsyn(pageNo: 2) {
     ...comparisonFields
   }
 }

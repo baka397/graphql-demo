@@ -6,8 +6,10 @@ const postWithUser = mockRules.postWithUser;
 const post = mockRules.post;
 const getUserList = mockRules.getUserList;
 module.exports = {
+    /**
+     * @see https://github.com/graphql/graphql-js/blob/master/src/execution/execute.js#L137
+     */
     getPostSync: function({pageNo = 1, pageSize = 10}) {
-        console.log('test');
         const pageInfo = reBuildPageInfo(pageNo, pageSize);
         const curPageSize = random(1, pageInfo.pageSize);
         const total = (pageNo - 1) * pageInfo.pageSize + curPageSize;
