@@ -26,9 +26,9 @@ describe('Query', function() {
     }
 }
         `, root).then(function(data) {
-            console.log(data);
             assert(data.data.result.total > 10);
             assert(data.data.result.total <= 20);
+            assert(data.data.result.data.length === (data.data.result.total - data.data.result.pageSize * (data.data.result.pageNo - 1)));
             done();
         })
         .catch(function(err) {
@@ -55,6 +55,7 @@ describe('Query', function() {
         `, root).then(function(data) {
             assert(data.data.result.total > 10);
             assert(data.data.result.total <= 20);
+            assert(data.data.result.data.length === (data.data.result.total - data.data.result.pageSize * (data.data.result.pageNo - 1)));
             done();
         })
         .catch(function(err) {
