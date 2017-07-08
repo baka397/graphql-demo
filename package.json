@@ -1,0 +1,22 @@
+{
+  "name": "graphql-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A graphql demo with mock & webpack",
+  "main": "./lib/",
+  "scripts": {
+    "build": "webpack",
+    "test": "node ./node_modules/mocha/bin/mocha --timeout 200000",
+    "test-cov": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha"
+  },
+  "author": "zhangjing <zhangjingj@zbj.com>",
+  "devDependencies": {
+    "graphql": "^0.10.3",
+    "intelli-espower-loader": "^1.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "mockjs": "^1.0.1-beta3",
+    "power-assert": "^1.4.4",
+    "webpack": "^3.1.0"
+  }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hello, World</title>
+	</head>
+	<body>
+    <div id="app">
+        <p>加载中</p>
+    </div>
+    <script type="text/tmpl" id="tmpl">
+        <ol>
+            {{#each data}}
+            <li>
+                <p>{{title}}({{domain}})</p>
+                <p>{{user.nickName}}</p>
+            </li>
+            {{/each}}
+        </ol>
+    </script>
+    <script type="text/javascript" src="./js/handlebars-v4.0.10.js"></script>
+    <script type="text/javascript" src="./js/app.min.js"></script>
+	</body>
+</html>
