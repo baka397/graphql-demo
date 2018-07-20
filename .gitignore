@@ -1,7 +1,6 @@
 # files
 .git
 *.log
-dist/js/app.min.js
 
 # folders
 node_modules/
