@@ -9,7 +9,7 @@ module.exports = {
     /**
      * @see https://github.com/graphql/graphql-js/blob/master/src/execution/execute.js#L137
      */
-    getPostSync: function({pageNo = 1, pageSize = 10}) {
+    postSync: function({pageNo = 1, pageSize = 10}) {
         const pageInfo = reBuildPageInfo(pageNo, pageSize);
         const curPageSize = random(1, pageInfo.pageSize);
         const total = (pageNo - 1) * pageInfo.pageSize + curPageSize;
@@ -23,7 +23,8 @@ module.exports = {
         console.log(JSON.stringify(mockRule));
         return mock(mockRule);
     },
-    getPostAsyn: function({pageNo = 1, pageSize = 10}) {
+    postAsyn: function({pageNo = 1, pageSize = 10}) {
+        console.log('----------------', arguments);
         const pageInfo = reBuildPageInfo(pageNo, pageSize);
         const curPageSize = random(1, pageInfo.pageSize);
         const total = (pageNo - 1) * pageInfo.pageSize + curPageSize;
@@ -36,23 +37,23 @@ module.exports = {
         console.log('---Mock Rule---');
         console.log(JSON.stringify(mockRule));
         return Promise.resolve(mock(mockRule))
-        .then(function(data) {
-            return new Promise(function(resolve) {
-                const userData = mock(getUserList(data.data.length, pageInfo.pageSize));
-                let userDataObj = {};
-                userData.data.forEach(function(user) {
-                    userDataObj[user.id] = Object.assign({}, user);
-                });
-                const postList = data.data.map(function(post) {
-                    return Object.assign({}, post, {
-                        user: userDataObj[post.userId]
+            .then(function(data) {
+                return new Promise(function(resolve) {
+                    const userData = mock(getUserList(data.data.length, pageInfo.pageSize));
+                    let userDataObj = {};
+                    userData.data.forEach(function(user) {
+                        userDataObj[user.id] = Object.assign({}, user);
                     });
+                    const postList = data.data.map(function(post) {
+                        return Object.assign({}, post, {
+                            user: userDataObj[post.userId]
+                        });
+                    });
+                    resolve(Object.assign({}, data, {
+                        data: postList
+                    }));
                 });
-                resolve(Object.assign({}, data, {
-                    data: postList
-                }));
             });
-        });
     }
 };
 

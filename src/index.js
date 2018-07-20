@@ -14,7 +14,7 @@ const root = Object.assign({}, querys);
 
 const query = `
 {
-    result: getPostAsyn(pageNo: 2) {
+    post: postAsyn(pageNo: 2) {
         pageNo
         pageSize
         total
@@ -32,10 +32,10 @@ const query = `
  */
 /* fragment
 const query = `{
-  leftComparison: getPostAsyn(pageNo: 1) {
+  leftComparison: postAsyn(pageNo: 1) {
     ...comparisonFields
   }
-  rightComparison: getPostAsyn(pageNo: 2) {
+  rightComparison: postAsyn(pageNo: 2) {
     ...comparisonFields
   }
 }
@@ -56,5 +56,5 @@ fragment comparisonFields on PostList {
 graphql(schema, query, root).then(function(data) {
     console.log('---Result Data---');
     console.log(data);
-    document.getElementById('app').innerHTML = template(data.data.result);
+    document.getElementById('app').innerHTML = template(data.data.post);
 });

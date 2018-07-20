@@ -12,7 +12,7 @@ describe('Query', function() {
     it('Query post Sync', function(done) {
         graphql(schema, `
 {
-    result: getPostSync(pageNo: 2) {
+    result: postSync(pageNo: 2) {
         pageNo
         pageSize
         total
@@ -31,15 +31,15 @@ describe('Query', function() {
             assert(data.data.result.data.length === (data.data.result.total - data.data.result.pageSize * (data.data.result.pageNo - 1)));
             done();
         })
-        .catch(function(err) {
-            done(err);
-        });
+            .catch(function(err) {
+                done(err);
+            });
     });
 
     it('Query post Asyn', function(done) {
         graphql(schema, `
 {
-    result: getPostAsyn(pageNo: 2) {
+    result: postAsyn(pageNo: 2) {
         pageNo
         pageSize
         total
@@ -58,15 +58,15 @@ describe('Query', function() {
             assert(data.data.result.data.length === (data.data.result.total - data.data.result.pageSize * (data.data.result.pageNo - 1)));
             done();
         })
-        .catch(function(err) {
-            done(err);
-        });
+            .catch(function(err) {
+                done(err);
+            });
     });
 
     it('Query Data with wrong params', function(done) {
         graphql(schema, `
 {
-    result: getPostAsyn(pageNo: -1, pageSize: -1) {
+    result: postAsyn(pageNo: -1, pageSize: -1) {
         pageNo
         pageSize
         total
@@ -83,8 +83,8 @@ describe('Query', function() {
             assert(data.data.result.total <= 10);
             done();
         })
-        .catch(function(err) {
-            done(err);
-        });
+            .catch(function(err) {
+                done(err);
+            });
     });
 });
